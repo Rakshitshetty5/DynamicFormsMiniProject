@@ -1,0 +1,267 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background-color: #5CDB95;
+    width: 100%;
+    height: 100%;
+}
+
+.app{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form{
+    width: 100vw;
+    display: flex;
+    background-color: #05386B;
+    border-radius: 10px;
+}
+
+.left{
+    width: 30%;
+    padding: 3rem;
+    margin-right: 3rem;
+    border-right: 1px solid #EDF5E1;
+}
+
+#selector{
+    height: 2rem;
+    background-color: #EDF5E1;
+    outline: none;
+    border: none;
+    color: #05386B;
+}
+
+.form .right{
+    padding: 3rem;
+    width: 70%;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.title{
+    font-size: 1.2rem;
+    color: #EDF5E1;
+}
+.form-group > input{
+    height: 2rem;
+    width: 10rem;
+    padding: 0.5rem;
+}
+
+.add-btn{
+    height: 2rem;
+    width: 3rem;
+    border: 0;
+    outline: none;
+    background-color: #8EE4AF;
+  
+}
+
+.remove-btn{
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(228, 95, 95);
+    border-radius: 50%;
+    color: aliceblue;
+}
+.submit-btn{
+    height: 2rem;
+    width: 10rem;
+    background-color: rgb(228, 95, 95);
+    color: aliceblue;
+}
+.select-options{
+    height: 1.2rem;
+    width: 5rem;
+    display: block;
+}
+.bottom{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+.bottom-left{
+    background-color: black;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    color: aliceblue;
+}
+.bottom-left input{
+    width: 10rem;
+    margin-left: 10rem;
+}
+.bottom-left select{
+    width: 10rem;
+    margin-left: 10rem;
+}
+.bottom-left .options{
+    display: flex;
+   
+}
+.bottom-right{
+    background-color: aliceblue;
+    color: #05386B;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    padding: 0px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.bottom-right__pair{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 2px solid gainsboro;
+
+}
+
+.key{
+    font-size: 1.5rem;
+}
+
+.value{
+    font-size: 1.2rem;
+    color: black;
+}
+
+.option-group > button{
+    height: 1.5rem;
+    width: 2rem;
+    margin-left: 0.2rem;
+}
+
+.options{
+    color: aliceblue;
+}
+#welcome {
+    color: white;
+}
+@media (max-width: 900px){
+    .form-group > input{
+        height: 2rem;
+        width: 8rem;
+        padding: 0.5rem;
+    }
+    .option-group > input{
+        height: 2rem;
+        width: 8rem;
+    }
+    .bottom-left input{
+        width: 8rem;
+        margin-left: 0rem;
+    }
+    .bottom-left select{
+        width: 8rem;
+        margin-left: 0rem;
+    }
+}
+
+@media (max-width: 730px){
+    .form{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .left{
+        width: 100%;
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0px;
+        border-right: none;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid #EDF5E1;
+    }
+    .form .right{
+        padding: 1rem;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .form .right .form-group{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-between;
+    }
+    .form-group > input{
+        height: 2rem;
+        width: 9rem;
+        padding: 0.5rem;
+    }
+    .option-group > input{
+        height: 2rem;
+        width: 9rem;
+    }
+    .bottom-left input{
+        width: 9rem;
+        margin-left: 0rem;
+    }
+    .bottom-left select{
+        width: 9rem;
+        margin-left: 0rem;
+    }
+    .bottom{
+        flex-direction: column;
+    }
+    .bottom-right{
+        margin-top: 2rem;
+    }
+    
+}
+
+@media (max-width: 420px){
+    .form-group > input{
+        height: 2rem;
+        width: 6rem;
+        padding: 0.5rem;
+    }
+    .option-group > input{
+        height: 2rem;
+        width: 6rem;
+    }
+    .bottom-left input{
+        width: 6rem;
+        margin-left: 0rem;
+    }
+    .bottom-left select{
+        width: 6rem;
+        margin-left: 0rem;
+    }
+}
+
