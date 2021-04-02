@@ -280,6 +280,7 @@ function displayOptionField(field){
      //creating 1st input
     var input_1 = document.createElement('input')
     input_1.setAttribute('type','text')
+    input_1.setAttribute('placeholder',"Enter Field Name")
     input_1.setAttribute('id',"text-" + count)
 
     //creating add button
@@ -401,6 +402,7 @@ function displayField(field){
     //creating 1st input
     var input_1 = document.createElement('input')
     input_1.setAttribute('type','text')
+    input_1.setAttribute('placeholder',"Enter Field Name")
     input_1.setAttribute('id',lowerCaseField + "-" + count)
     
     formGroup.appendChild(input_1)
