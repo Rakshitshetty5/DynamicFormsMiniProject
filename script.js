@@ -198,14 +198,6 @@ function touchUpOptions(){
     //length is 2 now
     optionGroup.removeChild(optionGroup_arr[1])
     
-    //creating remove button
-    var removeButton = document.createElement('span')
-    removeButton.setAttribute('class','remove-btn')
-    var removeButtonTextNode = document.createTextNode('X')
-    removeButton.appendChild(removeButtonTextNode);
-    removeButton.setAttribute('onclick',`removeFormField(${count})`)
-    
-    formGroup.appendChild(removeButton)
 }
 
 function addFormOptionField(formGroupID, inputID ){
@@ -274,6 +266,7 @@ function displayOptionField(field){
     //         <input type="text" id="checkbox-n" placeholder="Options">
     //         <button class="add-btn" onclick="addOptions('checkbox-n','checkbox')">Add</button>
     //     </div>
+    //     removebtn
     // </div>
     var lowerCaseField = field.toLowerCase()
     previousType = lowerCaseField
@@ -332,6 +325,15 @@ function displayOptionField(field){
 
     formGroup.appendChild(optionGroup)
 
+    //creating remove button
+    var removeButton = document.createElement('span')
+    removeButton.setAttribute('class','remove-btn')
+    var removeButtonTextNode = document.createTextNode('X')
+    removeButton.appendChild(removeButtonTextNode);
+    removeButton.setAttribute('onclick',`removeFormField(${count})`)
+
+    formGroup.appendChild(removeButton)
+
     formContainer.appendChild(formGroup)
     
 }
@@ -369,18 +371,10 @@ function addFormField(formGroupID, inputID ){
     var propertyTextNode = document.createTextNode(propertyName)
     propertyDiv.appendChild(propertyTextNode)
 
-    //creating remove button
-    var removeButton = document.createElement('span')
-    removeButton.setAttribute('class','remove-btn')
-    var removeButtonTextNode = document.createTextNode('X')
-    removeButton.appendChild(removeButtonTextNode);
-    removeButton.setAttribute('onclick',`removeFormField(${formGroupID})`)
-
     //modifying the form-group
     const nodeArr = formGroup.childNodes
     formGroup.replaceChild(propertyDiv, nodeArr[0])
     formGroup.removeChild(nodeArr[1])
-    formGroup.appendChild(removeButton)
 }
 
 
@@ -391,6 +385,7 @@ function displayField(field){
     //     <input type="text" id="text-n">
     //     <button class="add-btn" onclick="addFormField(n)">Add</button>
     //     <input type="text" placeholder="text">
+    //     <span class="remove-btn" onclick="removeFormField(id)">X</span>
     // </div>
 
     
@@ -427,6 +422,14 @@ function displayField(field){
     
     formGroup.appendChild(input_2)
 
+    //creating remove button
+    var removeButton = document.createElement('span')
+    removeButton.setAttribute('class','remove-btn')
+    var removeButtonTextNode = document.createTextNode('X')
+    removeButton.appendChild(removeButtonTextNode);
+    removeButton.setAttribute('onclick',`removeFormField(${count})`)
+
+    formGroup.appendChild(removeButton)
     //append new created form-group to parent
     formContainer.appendChild(formGroup)
 }
