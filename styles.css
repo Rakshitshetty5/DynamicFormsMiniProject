@@ -59,7 +59,7 @@ body{
 }
 .form-group > input{
     height: 2rem;
-    width: 10rem;
+    width: 12rem;
     padding: 0.5rem;
 }
 
@@ -90,7 +90,7 @@ body{
 }
 .select-options{
     height: 1.2rem;
-    width: 5rem;
+    width: 8rem;
     display: block;
 }
 .bottom{
