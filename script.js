@@ -255,7 +255,7 @@ function addOptions(id,type){
         for(var i = 0; i < options_arr.length; i++){
             var option = document.createElement('option')
             option.setAttribute('value',options_arr[i])
-            var textNode = document.createTextNode(options_arr[i])
+            var textNode = document.createTextNode(options_arr[i].toUpperCase())
             option.appendChild(textNode)
             optionContainer.appendChild(option)
         }
@@ -273,6 +273,7 @@ function addOptions(id,type){
             optionContainer.appendChild(options)
         }
     }
+    document.getElementById(id).value = ''
    
 
 
