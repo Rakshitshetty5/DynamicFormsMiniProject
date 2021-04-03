@@ -78,10 +78,17 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(228, 95, 95);
+    background-color: aliceblue;
     border-radius: 50%;
-    color: aliceblue;
+    color: red;
 }
+
+.remove-btn:hover{
+    background-color: rgb(228, 95, 95);
+    transform: scale(1.2);
+    color: white;
+}
+
 .submit-btn{
     height: 2rem;
     width: 10rem;

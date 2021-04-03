@@ -5,6 +5,50 @@ var options_arr = [];
 var flag = false;
 var previousType;
 
+function createButton(tagName ,className, onclickFunction, btnName){
+    var button = document.createElement(tagName)
+    button.setAttribute('class',className)
+    button.setAttribute('onclick', onclickFunction)
+    buttonTextNode = document.createTextNode(btnName)
+    button.appendChild(buttonTextNode)
+    return button
+}
+
+function createInput(type, id, className, placeholder, value){
+    var input = document.createElement('input')
+    input.setAttribute('type',type)
+    if(id.length > 0){
+        input.setAttribute('id',id)
+    }
+    if(placeholder.length > 0){
+        input.setAttribute('placeholder',placeholder)
+    }
+    if(className.length > 0){
+        input.setAttribute('class',className)
+    }
+    if(value.length > 0){
+        input.setAttribute('value',value)
+    }
+    return input
+}
+
+function createDiv(id, className, nodeText){
+    var div = document.createElement('div')
+    if(className){
+        div.setAttribute('class',className)
+    }
+    if(id){
+        div.setAttribute('id',id)
+    }
+    if(nodeText){
+        textNode = document.createTextNode(nodeText)
+        div.appendChild(textNode)
+    }
+
+    return div
+}
+
+
 function displaySavedData(arr){
                 //saved container is parent
                 // <div class="bottom-right__pair">
@@ -51,18 +95,12 @@ function displaySavedData(arr){
                 var arrayDiv = document.createElement('div')
                 arrayDiv.setAttribute('class','array')
                 for(var j = 0; j < valueArr.length; j++){
-                    var valueDiv = document.createElement('div')
-                    valueDiv.setAttribute('class','value')
-                    textNodeValue = document.createTextNode(valueArr[j])
-                    valueDiv.appendChild(textNodeValue)
+                    var valueDiv = createDiv(null,'value',valueArr[j])
                     arrayDiv.appendChild(valueDiv)
                 }
                 pair.appendChild(arrayDiv)
             }else{
-                var valueDiv = document.createElement('div')
-                valueDiv.setAttribute('class','value')
-                textNodeValue = document.createTextNode(arr[i][x])
-                valueDiv.appendChild(textNodeValue)
+                var valueDiv = createDiv(null,'value',arr[i][x])
                 pair.appendChild(valueDiv)
             }
 
@@ -174,18 +212,11 @@ function saveForm(){
     document.querySelector('.submit-btn').setAttribute('onclick',"saveData()")
 
     savedForm.style.display = "flex"
-
-    console.log(savedForm)
-
 }
 
 
 function displaySubmitButton(){
-    var button = document.createElement('button')
-    button.setAttribute('class','submit-btn')
-    button.setAttribute('onclick','saveForm()')
-    var textNode = document.createTextNode('Submit')
-    button.appendChild(textNode)
+    var button = createButton('button', 'submit-btn','saveForm()','Submit')
     formContainer.appendChild(button)
 }
 
@@ -206,11 +237,8 @@ function addFormOptionField(formGroupID, inputID ){
     var propertyName = document.getElementById(inputID).value
     
     //creating title div
-    var propertyDiv = document.createElement('div')
-    propertyDiv.setAttribute('class','title')
-    var propertyTextNode = document.createTextNode(propertyName)
-    propertyDiv.appendChild(propertyTextNode)
-    
+    var propertyDiv = createDiv(null,'title',propertyName)
+
     //modifying the form-group
     const nodeArr = formGroup.childNodes
     formGroup.replaceChild(propertyDiv, nodeArr[0])
@@ -234,10 +262,7 @@ function addOptions(id,type){
     }else{
         //if type is radio or checkbox
         for(var i = 0; i < options_arr.length; i++){
-            var input = document.createElement('input')
-            input.setAttribute('type',type)
-            input.setAttribute('value',options_arr[i])
-            input.setAttribute('class',id)
+            var input = createInput(type,'',id,"",options_arr[i])
             var textNode = document.createTextNode(options_arr[i])
             var label = document.createElement('label')
             label.appendChild(textNode)
@@ -253,6 +278,7 @@ function addOptions(id,type){
 
 
 }
+
 
 function displayOptionField(field){
     // <div class="form-group" id="n">
@@ -273,42 +299,23 @@ function displayOptionField(field){
 
     
     //creating form-group div
-    var formGroup = document.createElement('div')
-    formGroup.setAttribute('class','form-group')
-    formGroup.setAttribute('id',count)
+    var formGroup = createDiv(count,'form-group',null)
 
      //creating 1st input
-    var input_1 = document.createElement('input')
-    input_1.setAttribute('type','text')
-    input_1.setAttribute('placeholder',"Enter Field Name")
-    input_1.setAttribute('id',"text-" + count)
+    var input_1 = createInput('text',"text-" + count,'',"Enter Field Name",'')
 
     //creating add button
-    var button_1 = document.createElement('button')
-    button_1.setAttribute('class','add-btn')
-    button_1.setAttribute('onclick',`addFormOptionField(${count},"text-${count}")`)
-    buttonTextNode_1 = document.createTextNode('Add')
-    button_1.appendChild(buttonTextNode_1)
+    var button_1 = createButton('button','add-btn',`addFormOptionField(${count},"text-${count}")`,'Add')
 
     formGroup.appendChild(input_1)
     formGroup.appendChild(button_1)
+
     //creating option-group
-
-    var optionGroup = document.createElement('div')
-    optionGroup.setAttribute('class','option-group')
-    optionGroup.setAttribute('id','option-group_'+lowerCaseField+"-"+count)
+    var optionGroup = createDiv('option-group_'+lowerCaseField+"-"+count,'option-group',null)
 
 
-    var input_2 = document.createElement('input')
-    input_2.setAttribute('type','text')
-    input_2.setAttribute('id',lowerCaseField + "-" + count)
-    input_2.setAttribute('placeholder','Options')
-
-    var button_2 = document.createElement('button')
-    button_2.setAttribute('class','add-btn')
-    button_2.setAttribute('onclick',`addOptions("${lowerCaseField}-${count}","${lowerCaseField}")`)
-    buttonTextNode_2 = document.createTextNode('+')
-    button_2.appendChild(buttonTextNode_2)
+    var input_2 = createInput('text',lowerCaseField + "-" + count,'','Options','')
+    var button_2 = createButton('button','add-btn',`addOptions("${lowerCaseField}-${count}","${lowerCaseField}")`,"+")
     
     var optionsContainer
     if(lowerCaseField === 'select'){
@@ -316,8 +323,9 @@ function displayOptionField(field){
         optionsContainer.setAttribute('class','select-options')
         optionsContainer.setAttribute('id','options-container_'+lowerCaseField+"-"+count)
     }else{
-        optionsContainer = document.createElement('div')
-        optionsContainer.setAttribute('id','options-container_'+lowerCaseField+"-"+count)
+
+        var optionsContainer = createDiv('options-container_'+lowerCaseField+"-"+count,null,null)
+
     }
 
     optionGroup.appendChild(optionsContainer)
@@ -327,11 +335,7 @@ function displayOptionField(field){
     formGroup.appendChild(optionGroup)
 
     //creating remove button
-    var removeButton = document.createElement('span')
-    removeButton.setAttribute('class','remove-btn')
-    var removeButtonTextNode = document.createTextNode('X')
-    removeButton.appendChild(removeButtonTextNode);
-    removeButton.setAttribute('onclick',`removeFormField(${count})`)
+    var removeButton = createButton('span','remove-btn',`removeFormField(${count})`,'X')
 
     formGroup.appendChild(removeButton)
 
@@ -367,10 +371,8 @@ function addFormField(formGroupID, inputID ){
     var propertyName = document.getElementById(inputID).value
     
     //creating title div
-    var propertyDiv = document.createElement('div')
-    propertyDiv.setAttribute('class','title')
-    var propertyTextNode = document.createTextNode(propertyName)
-    propertyDiv.appendChild(propertyTextNode)
+    var propertyDiv = createDiv(null,'title',propertyName)
+
 
     //modifying the form-group
     const nodeArr = formGroup.childNodes
@@ -390,46 +392,31 @@ function displayField(field){
     // </div>
 
     
-
     var lowerCaseField = field.toLowerCase()
-    var captilaziedField = field.charAt(0).toUpperCase() + field.slice(1)
     previousType = lowerCaseField
     //creating form-group div
-    var formGroup = document.createElement('div')
-    formGroup.setAttribute('class','form-group')
-    formGroup.setAttribute('id',count)
+    var formGroup = createDiv(count,'form-group',null)
+
 
     //creating 1st input
-    var input_1 = document.createElement('input')
-    input_1.setAttribute('type','text')
-    input_1.setAttribute('placeholder',"Enter Field Name")
-    input_1.setAttribute('id',lowerCaseField + "-" + count)
-    
+    var input_1 = createInput('text',lowerCaseField + "-" + count,'',"Enter Field Name",'')
+
     formGroup.appendChild(input_1)
 
     //creating add button
-    var button = document.createElement('button')
-    button.setAttribute('class','add-btn')
-    button.setAttribute('onclick',`addFormField(${count},"${lowerCaseField}-${count}")`)
-    buttonTextNode = document.createTextNode('Add')
-    button.appendChild(buttonTextNode)
+    var button = createButton('button','add-btn',`addFormField(${count},"${lowerCaseField}-${count}")`,'Add')
 
     formGroup.appendChild(button)
 
      //creating 2nd input
-    var input_2 = document.createElement('input')
-    input_2.setAttribute('type',lowerCaseField)
-    input_2.setAttribute('placeholder',captilaziedField)
-    input_2.setAttribute('class',lowerCaseField + '-' + count)
+    var input_2 = createInput(lowerCaseField,'',lowerCaseField + '-' + count,"",'')
+
     
     formGroup.appendChild(input_2)
 
     //creating remove button
-    var removeButton = document.createElement('span')
-    removeButton.setAttribute('class','remove-btn')
-    var removeButtonTextNode = document.createTextNode('X')
-    removeButton.appendChild(removeButtonTextNode);
-    removeButton.setAttribute('onclick',`removeFormField(${count})`)
+    var removeButton = createButton('span','remove-btn',`removeFormField(${count})`,'X')
+
 
     formGroup.appendChild(removeButton)
     //append new created form-group to parent
